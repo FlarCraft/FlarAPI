@@ -1,0 +1,30 @@
+##################################################
+#                                                #
+#                    FlarAPI                     #
+#                  by Adamuseq                   #
+#                                                #
+##################################################
+
+Prefix: '&8&l[&e&lFlar&6&lAPI&8&l] '
+
+# Commands
+
+# FflarAPI Commad
+
+Chat_Text: '&cWersja API: 1.0.1'
+Title_Text: '&e&lFlar&6&lAPI'
+SubTitle_Text: '&fv1.0.1 by Adamuseq'
+
+
+Chat_Text_Discord:
+- ''
+- '  &9&lDiscord serwera:'
+- '  &fWejdz: &edc.flarcraft.net'
+- ''
+
+Chat_Text_Rangs:
+  - ''
+  - '  &5&lRangi na serwerze:'
+  - '  &fPorównaie na: &eflarcraft.net/porownaie'
+  - '  &fZakup na: &eflarcraft.net/sklep'
+  - ''

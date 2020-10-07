@@ -1,0 +1,4 @@
+name: FlarAPI
+main: net.flarcraft.api.BungeeMain
+version: 1.0
+author: Adamuseq
