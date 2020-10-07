@@ -1,8 +1,6 @@
 package net.flarcraft.api;
 
-import net.flarcraft.api.commands.DiscordCommand;
-import net.flarcraft.api.commands.FlarAPICommand;
-import net.flarcraft.api.commands.RangsCommand;
+import net.flarcraft.api.commands.*;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -15,22 +13,30 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
+
 import java.util.logging.Level;
 
 public class BungeeMain extends Plugin {
 
     public static BungeeMain instance;
+    public static Runtime runtime;
     public static Configuration cg;
+
 
     public void onEnable() {
         (BungeeMain.instance = this).createFiles();
         registerConfig();
+        this.runtime = Runtime.getRuntime();
         this.getProxy().getLogger().log(Level.INFO, ChatColor.RED + "[Bungee] FlarAPI Loading...");
         ProxyServer.getInstance().getLogger().info(ChatColor.YELLOW + "-----------------------");
         ProxyServer.getInstance().getLogger().info(ChatColor.YELLOW + "- " + ChatColor.GREEN + "Commands loading...");
         getProxy().getPluginManager().registerCommand(this, new FlarAPICommand());
         getProxy().getPluginManager().registerCommand(this, new DiscordCommand());
         getProxy().getPluginManager().registerCommand(this, new RangsCommand());
+        getProxy().getPluginManager().registerCommand(this, new GcCommand());
+        getProxy().getPluginManager().registerCommand(this, new VipCommand());
+        getProxy().getPluginManager().registerCommand(this, new SVipCommand());
+        getProxy().getPluginManager().registerCommand(this, new SponsorCommand());
         ProxyServer.getInstance().getLogger().info(ChatColor.YELLOW + "-----------------------");
         ProxyServer.getInstance().getLogger().info(new StringBuilder().append(ChatColor.RED).append(ChatColor.BOLD).append("Enabled FlarAPI 1.0 loaded successful").toString());
     }
@@ -67,6 +73,10 @@ public class BungeeMain extends Plugin {
 
     public static BungeeMain getInstance() {
         return BungeeMain.instance;
+    }
+
+    public Runtime getRuntime() {
+        return this.runtime;
     }
 
 }

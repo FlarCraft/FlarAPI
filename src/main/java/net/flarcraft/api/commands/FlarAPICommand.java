@@ -1,6 +1,7 @@
 package net.flarcraft.api.commands;
 
 import net.flarcraft.api.BungeeMain;
+import net.flarcraft.api.utils.ChatUtil;
 import net.md_5.bungee.api.*;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -15,16 +16,18 @@ public class FlarAPICommand extends Command {
         super("flarapi");
     }
 
-    final String prefix = BungeeMain.cg.getString("Prefix").replace("&", "§");
+    final String prefix = ChatUtil.fixColors(BungeeMain.cg.getString("Prefix"));
+
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
-        commandSender.sendMessage(new TextComponent(String.valueOf(String.valueOf(prefix)) + BungeeMain.cg.getString("Chat_Text").replace("&", "§")));
-
+        ChatUtil.sendMessage(commandSender, String.valueOf(String.valueOf(prefix)) + BungeeMain.cg.getString("Chat_Text"));
         final Title t = ProxyServer.getInstance().createTitle();
         t.reset();
-        t.title((BaseComponent)new TextComponent(BungeeMain.cg.getString("Title_Text").replace("&", "§")));
-        t.subTitle((BaseComponent)new TextComponent(BungeeMain.cg.getString("SubTitle_Text").replace("&", "§")));
+        String title = ChatUtil.fixColors(BungeeMain.cg.getString("Title_Text"));
+        t.title((BaseComponent) new TextComponent(title));
+        String subtitle = ChatUtil.fixColors(BungeeMain.cg.getString("SubTitle_Text"));
+        t.subTitle((BaseComponent)new TextComponent(subtitle));
         t.send((ProxiedPlayer) commandSender);
     }
 }
